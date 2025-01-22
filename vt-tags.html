@@ -1,0 +1,115 @@
+<script src="./vt-examples.js"></script>
+<style>
+    section {
+        margin: 0 auto;
+        width: 500px;
+    }
+
+    ::view-transition-group(*) {
+        animation-duration: .4s;
+    }
+
+    .search {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        width: 400px;
+        min-height: 48px;
+        padding: 12px;
+        border: 1px solid #e4e4e7;
+        border-radius: 12px;
+        font-size: 16px;
+        margin-bottom: 24px;
+
+        button {
+            box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.1) 0px 2px 4px -2px;
+            background-color: #ffffff;
+            border: 1px solid #e4e4e7;
+            order: 0 !important;
+        }
+
+        button span {
+            display: inline-block;
+        }
+    }
+
+    .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        padding: 12px;
+        background: white;
+        border-radius: 16px;
+        border: 1px solid #e4e4e7;
+        width: 400px;
+    }
+
+    button {
+        padding: 8px;
+        background: #f4f4f5;
+        border-radius: 8px;
+        font-size: 16px;
+        color: #27272a;
+        cursor: pointer;
+        border: none;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        span {
+            display: none;
+        }
+    }
+</style>
+<section>
+    <h1>TAGS</h1>
+    <div class="search"></div>
+    <div class="tags">
+        <button>Docker<span>X</span></button>
+        <button>Kubernetes<span>X</span></button>
+        <button>AWS<span>X</span></button>
+        <button>GraphQL<span>X</span></button>
+        <button>MongoDB<span>X</span></button>
+        <button>PostgreSQL<span>X</span></button>
+        <button>Redis<span>X</span></button>
+        <button>Git<span>X</span></button>
+        <button>Webpack<span>X</span></button>
+        <button>Vite<span>X</span></button>
+        <button>Cypress<span>X</span></button>
+        <button>Storybook<span>X</span></button>
+        <button>Tailwind<span>X</span></button>
+        <button>Prisma<span>X</span></button>
+        <button>Nginx<span>X</span></button>
+    </div>
+</section>
+<script>
+    const tags = document.querySelectorAll('button');
+    const search = document.querySelector('.search');
+
+    tags.forEach((tag, index) => {
+        tag.style.viewTransitionName = `tag-${index}`;
+        tag.style.order = index;
+    });
+
+    const tagsContainer = document.querySelector('.tags');
+
+    tagsContainer.addEventListener('click', (e) => {
+        const tag = e.target.closest('button');
+        if (tag) {
+            document.startViewTransition(() => {
+                search.appendChild(tag);
+            });
+        }
+    });
+
+    search.addEventListener('click', (e) => {
+        const span = e.target.closest('span');
+        if (span) {
+            const tag = span.closest('button');
+            document.startViewTransition(() => {
+                tagsContainer.appendChild(tag);
+            });
+        }
+    });
+</script>
