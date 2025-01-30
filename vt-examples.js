@@ -47,6 +47,6 @@ setTimeout(() => {
                 `A { zoom:2;margin: 0.5em; }` +
                 `vt-pages { background:beige;margin-bottom:2em; display: flex; flex-wrap: wrap; justify-content: center; }`
         }),
-        createElement("vt-pages")
+        // createElement("vt-pages")
     );
 }, 10);
