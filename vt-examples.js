@@ -25,14 +25,16 @@ customElements.define('vt-pages', class extends HTMLElement {
                 { title: "Tags", file: "vt-tags" },
                 { title: "Tabs", file: "vt-tabs" },
                 { title: "Stack", file: "vt-stack" },
+                { title: "Cards", file: "vt-cards" },
             ].map(({ title, file }) => {
                 // ------------------------------------------------------------
                 return createElement("A", {
                     href: `./${file}.html`,
                     innerHTML: title,
                     style: {
+                        display: "inline-block",
                         background: window.location.href.includes(file) ? "lightgreen" : "none",
-                        padding: "0.5em"
+                        xpadding: "0.5em"
                     }
                 });
             })
@@ -43,10 +45,10 @@ setTimeout(() => {
     document.body.prepend(
         createElement("STYLE", {
             textContent:
-                `body{font:16px arial}` +
-                `A { zoom:2;margin: 0.5em; }` +
-                `vt-pages { background:beige;margin-bottom:2em; display: flex; flex-wrap: wrap; justify-content: center; }`
+                `body{font:14px arial}` +
+                `A{zoom:1;margin:0.5em}` +
+                `vt-pages{background:beige;display:flex;flex-wrap:wrap;justify-content:center}`
         }),
-        // createElement("vt-pages")
+        //createElement("vt-pages") // not on every page!
     );
 }, 10);
